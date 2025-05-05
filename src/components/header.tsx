@@ -22,7 +22,7 @@ export default function Header() {
   }, []);
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-20 flex flex-row justify-between px-10 py-2 font-sans transition-all duration-700 ${isScrolled ? "bg-neutral-800" : "bg-transparent"}`}
+      className={`fixed top-0 right-0 left-0 z-20 flex flex-row justify-between px-10 py-2 font-sans transition-all duration-700 ${isScrolled ? "bg-neutral-800 text-white" : "bg-transparent"}`}
     >
       <HamburgerMenu />
       <Link href="/" className="flex flex-row place-items-center gap-4">

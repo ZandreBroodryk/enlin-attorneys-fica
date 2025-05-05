@@ -6,37 +6,37 @@ export default function DocumentTypes() {
     <section className="flex flex-wrap justify-center gap-7 bg-[url('/content-background.jpg')] px-14 py-7 bg-contain lg:bg-cover">
       <DocumentItem
         alt="Natural Person Fica"
-        href="/natural-person"
+        href="/fica/natural-person"
         label="Natural Person Fica"
         src="/natural-person.jpg"
       />
       <DocumentItem
         alt="Trust Fica"
-        href="/trust"
+        href="/fica/trust"
         label="Trust Fica"
         src="/trust.png"
       />
       <DocumentItem
         alt="Partnership"
-        href="/partnership"
+        href="/fica/partnership"
         label="Partnership Fica"
         src="/partnership.png"
       />
       <DocumentItem
         alt="Estate Trust"
-        href="/partnership"
+        href="/fica/partnership"
         label="Estate Trust Fica"
         src="/estate-trust.png"
       />
       <DocumentItem
         alt="Company"
-        href="/company"
+        href="/fica/company"
         label="Company Fica"
         src="/company.png"
       />
       <DocumentItem
         alt="POPIA Concent"
-        href="/popia"
+        href="/fica/popia"
         label="Consent in terms of the Protection of Personal Information Act"
         src="/popia-concent.png"
       />
