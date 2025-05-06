@@ -197,9 +197,9 @@ export default function PopiaConsentFicaPage() {
 
                         field.handleChange(stringContent!);
                       }}
-                      className="rounded border p-5"
+                      className="z-10 rounded border p-5"
                     >
-                      Capture
+                      {field.state.value ? "Update" : "Capture"}
                     </button>
                   </div>
                 )}
