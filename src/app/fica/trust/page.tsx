@@ -40,9 +40,8 @@ export default function TrustFicaPage() {
         }}
         className="flex flex-col gap-7"
       >
-        <form.Field
-          name="trustName"
-          children={(field) => {
+        <form.Field name="trustName">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Trust Name</label>
@@ -61,10 +60,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="trustNumber"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="trustNumber">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Trust Number</label>
@@ -83,10 +81,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="courtName"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="courtName">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>
@@ -107,10 +104,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="placeOfBusiness"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="placeOfBusiness">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Main place of business</label>
@@ -129,10 +125,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="incomeTaxNr"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="incomeTaxNr">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Income tax number</label>
@@ -151,10 +146,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="vatNr"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="vatNr">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>VAT registration number</label>
@@ -173,10 +167,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="primaryContactNr"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="primaryContactNr">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Primary contact number</label>
@@ -195,10 +188,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="primaryEmail"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="primaryEmail">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Primary email address</label>
@@ -218,10 +210,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="websiteUrl"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="websiteUrl">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Website, if applicable</label>
@@ -241,10 +232,9 @@ export default function TrustFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="servicesRequired"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="servicesRequired">
+          {(field) => (
             <>
               <label htmlFor={field.name}>Services needed</label>
               <select
@@ -278,10 +268,11 @@ export default function TrustFicaPage() {
               </p>
             </>
           )}
-        />
+        </form.Field>
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
+        >
+          {([canSubmit, isSubmitting]) => (
             <>
               <button
                 type="submit"
@@ -305,7 +296,7 @@ export default function TrustFicaPage() {
               </button>
             </>
           )}
-        />
+        </form.Subscribe>
       </form>
     </div>
   );

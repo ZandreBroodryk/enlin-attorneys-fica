@@ -55,9 +55,8 @@ export default function NaturalPersonFicaPage() {
         }}
         className="flex flex-col gap-7"
       >
-        <form.Field
-          name="fullNames"
-          children={(field) => {
+        <form.Field name="fullNames">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Full name and surname</label>
@@ -76,10 +75,9 @@ export default function NaturalPersonFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="saIdNumber"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="saIdNumber">
+          {(field) => (
             <div className="flex flex-col">
               <label htmlFor={field.name}>SA ID Number</label>
               <input
@@ -96,10 +94,9 @@ export default function NaturalPersonFicaPage() {
               </p>
             </div>
           )}
-        />
-        <form.Field
-          name="citizenship"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="citizenship">
+          {(field) => (
             <div className="flex flex-col">
               <label htmlFor={field.name}>Citizenship</label>
               <input
@@ -119,7 +116,7 @@ export default function NaturalPersonFicaPage() {
               </p>
             </div>
           )}
-        />
+        </form.Field>
         <div className="flex flex-row gap-3">
           <input
             id="foreigner"
@@ -131,9 +128,8 @@ export default function NaturalPersonFicaPage() {
         </div>
         {isForeigner && (
           <>
-            <form.Field
-              name="passportNumber"
-              children={(field) => (
+            <form.Field name="passportNumber">
+              {(field) => (
                 <div className="flex flex-col">
                   <label htmlFor={field.name}>Passport Number</label>
                   <input
@@ -150,10 +146,9 @@ export default function NaturalPersonFicaPage() {
                   </p>
                 </div>
               )}
-            />
-            <form.Field
-              name="dateOfBirth"
-              children={(field) => (
+            </form.Field>
+            <form.Field name="dateOfBirth">
+              {(field) => (
                 <>
                   <label htmlFor={field.name}>Date of Birth</label>
                   <input
@@ -171,10 +166,9 @@ export default function NaturalPersonFicaPage() {
                   </p>
                 </>
               )}
-            />
-            <form.Field
-              name="residencyStatus"
-              children={(field) => (
+            </form.Field>
+            <form.Field name="residencyStatus">
+              {(field) => (
                 <>
                   <label htmlFor={field.name}>Residency Status</label>
                   <select
@@ -199,12 +193,11 @@ export default function NaturalPersonFicaPage() {
                   </p>
                 </>
               )}
-            />
+            </form.Field>
           </>
         )}
-        <form.Field
-          name="addressOfMainResidence"
-          children={(field) => (
+        <form.Field name="addressOfMainResidence">
+          {(field) => (
             <div className="flex flex-col">
               <label htmlFor={field.name}>
                 Address of your <em>main</em> place of residence
@@ -223,10 +216,9 @@ export default function NaturalPersonFicaPage() {
               </p>
             </div>
           )}
-        />
-        <form.Field
-          name="maritalStatus"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="maritalStatus">
+          {(field) => (
             <>
               <label htmlFor={field.name}>Marital Status</label>
               <select
@@ -251,10 +243,9 @@ export default function NaturalPersonFicaPage() {
               </p>
             </>
           )}
-        />
-        <form.Field
-          name="incomeTaxNr"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="incomeTaxNr">
+          {(field) => (
             <div className="flex flex-col">
               <label htmlFor={field.name}>
                 SA or Foreign Income Tax Number
@@ -273,10 +264,9 @@ export default function NaturalPersonFicaPage() {
               </p>
             </div>
           )}
-        />
-        <form.Field
-          name="contactNumber"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="contactNumber">
+          {(field) => (
             <div className="flex flex-col">
               <label htmlFor={field.name}>Contact Number</label>
               <input
@@ -294,10 +284,9 @@ export default function NaturalPersonFicaPage() {
               </p>
             </div>
           )}
-        />
-        <form.Field
-          name="email"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="email">
+          {(field) => (
             <div className="flex flex-col">
               <label htmlFor={field.name}>Email</label>
               <input
@@ -315,10 +304,9 @@ export default function NaturalPersonFicaPage() {
               </p>
             </div>
           )}
-        />
-        <form.Field
-          name="servicesRequired"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="servicesRequired">
+          {(field) => (
             <>
               <label htmlFor={field.name}>Services needed</label>
               <select
@@ -352,10 +340,11 @@ export default function NaturalPersonFicaPage() {
               </p>
             </>
           )}
-        />
+        </form.Field>
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
+        >
+          {([canSubmit, isSubmitting]) => (
             <div className="flex flex-row justify-center gap-6">
               <button
                 type="submit"
@@ -380,7 +369,7 @@ export default function NaturalPersonFicaPage() {
               </button>
             </div>
           )}
-        />
+        </form.Subscribe>
       </form>
     </div>
   );

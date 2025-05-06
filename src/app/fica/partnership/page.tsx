@@ -44,9 +44,8 @@ export default function PartnershipFicaPage() {
         }}
         className="flex flex-col gap-7"
       >
-        <form.Field
-          name="partnershipTradingName"
-          children={(field) => {
+        <form.Field name="partnershipTradingName">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Partnership trading name</label>
@@ -65,10 +64,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="natureOfBusiness"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="natureOfBusiness">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>
@@ -89,10 +87,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="numberOfPartners"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="numberOfPartners">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Number Of Partners</label>
@@ -112,10 +109,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="incomeTaxNr"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="incomeTaxNr">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Income tax number</label>
@@ -134,10 +130,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="vatNr"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="vatNr">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>VAT registration number</label>
@@ -156,10 +151,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="placeOfBusiness"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="placeOfBusiness">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Main place of business</label>
@@ -178,10 +172,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="primaryContactNr"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="primaryContactNr">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Primary contact number</label>
@@ -200,10 +193,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="primaryEmail"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="primaryEmail">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Primary email address</label>
@@ -223,10 +215,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="websiteUrl"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="websiteUrl">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Website, if applicable</label>
@@ -246,10 +237,9 @@ export default function PartnershipFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="servicesRequired"
-          children={(field) => (
+        </form.Field>
+        <form.Field name="servicesRequired">
+          {(field) => (
             <>
               <label htmlFor={field.name}>Services needed</label>
               <select
@@ -283,10 +273,11 @@ export default function PartnershipFicaPage() {
               </p>
             </>
           )}
-        />
+        </form.Field>
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
+        >
+          {([canSubmit, isSubmitting]) => (
             <div className="flex flex-row justify-center gap-6">
               <button
                 type="submit"
@@ -311,7 +302,7 @@ export default function PartnershipFicaPage() {
               </button>
             </div>
           )}
-        />
+        </form.Subscribe>
       </form>
     </div>
   );

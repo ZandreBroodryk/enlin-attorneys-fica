@@ -45,9 +45,8 @@ export default function PopiaConsentFicaPage() {
         }}
         className="flex max-w-screen flex-col gap-7"
       >
-        <form.Field
-          name="consent"
-          children={(field) => {
+        <form.Field name="consent">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <p>
@@ -78,7 +77,7 @@ export default function PopiaConsentFicaPage() {
                       value={option}
                       onBlur={field.handleBlur}
                       checked={field.state.value === option}
-                      onChange={(e) => field.handleChange(option)}
+                      onChange={() => field.handleChange(option)}
                       type="radio"
                     />
                     <label htmlFor={field.name}>{option}</label>
@@ -92,10 +91,9 @@ export default function PopiaConsentFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="date"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="date">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>
@@ -117,10 +115,9 @@ export default function PopiaConsentFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="email"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="email">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>Email</label>
@@ -140,10 +137,9 @@ export default function PopiaConsentFicaPage() {
               </div>
             );
           }}
-        />
-        <form.Field
-          name="signature"
-          children={(field) => {
+        </form.Field>
+        <form.Field name="signature">
+          {(field) => {
             return (
               <div className="flex flex-col">
                 <label htmlFor={field.name}>
@@ -241,11 +237,12 @@ export default function PopiaConsentFicaPage() {
               </div>
             );
           }}
-        />
+        </form.Field>
 
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
+        >
+          {([canSubmit, isSubmitting]) => (
             <div className="flex flex-row justify-center gap-6">
               <button
                 type="submit"
@@ -271,7 +268,7 @@ export default function PopiaConsentFicaPage() {
               </button>
             </div>
           )}
-        />
+        </form.Subscribe>
       </form>
     </div>
   );

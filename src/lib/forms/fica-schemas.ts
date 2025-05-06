@@ -1,11 +1,4 @@
 import { z } from "zod";
-import {
-  residencyStatus,
-  maritalStatus,
-  servicesRequiredNaturalPerson,
-  servicesRequiredTrustAndPartnership,
-  consentOptions,
-} from "../shared";
 import { createInsertSchema } from "drizzle-zod";
 import {
   naturalPersonFica,
@@ -13,12 +6,6 @@ import {
   popiaConsent,
   trustFica,
 } from "../db/schema";
-
-const foreignerSchema = z.object({
-  passportNumber: z.string(),
-  dateOfBirth: z.string().date(),
-  residencyStatus: residencyStatus,
-});
 
 export const naturalPersonSchema = createInsertSchema(naturalPersonFica, {
   email: (schema) => schema.email(),
