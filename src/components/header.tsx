@@ -35,8 +35,7 @@ export default function Header() {
         <h1 className="text-xl">Enslin Inc. Attorneys</h1>
       </Link>
       <nav className="hidden flex-row items-center gap-4 lg:flex">
-        <a>Home Page</a>
-        <a>Client Fica Documents</a>
+        <Routes />
       </nav>
     </header>
   );
@@ -82,9 +81,17 @@ function HamburgerMenu() {
       <nav
         className={`absolute top-0 left-0 flex h-screen flex-col gap-4 overflow-clip bg-neutral-800 pt-20 transition-all duration-500 lg:hidden ${isOpen ? "w-60 px-7" : "w-0"}`}
       >
-        <a>Home Page</a>
-        <a>Client Fica Documents</a>
+        <Routes />
       </nav>
+    </>
+  );
+}
+
+function Routes() {
+  return (
+    <>
+      <Link href="/about">About Page</Link>
+      <Link href="/">Client Fica Documents</Link>
     </>
   );
 }

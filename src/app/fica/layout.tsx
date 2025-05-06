@@ -6,10 +6,10 @@ export default function FicaFormLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-white text-black max-w-screen">
       <Header />
       <div className="h-20" />
-      <div className="flex flex-col place-items-center">{children}</div>
+      <div className="flex flex-col place-items-center px-7">{children}</div>
     </div>
   );
 }

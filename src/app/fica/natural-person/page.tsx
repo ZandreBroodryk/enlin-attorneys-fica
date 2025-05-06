@@ -1,19 +1,19 @@
 "use client";
 import {
+  maritalStatusType,
   maritalStatus,
-  maritalStatuses,
   naturalPersonSchema,
   naturalPersonType,
   residencyStatus,
-  residencyStatuses,
-  servicesRequired,
-  servicesRequiredType,
+  residencyStatusType,
+  servicesRequiredNaturalPerson,
+  servicesRequiredNaturalPersonType,
 } from "@/lib/forms/fica-schemas";
 import { useForm } from "@tanstack/react-form";
-import { Ref, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
-export default function NaturalPersonPage() {
+export default function NaturalPersonFicaPage() {
   const [isForeigner, setIsForeigner] = useState<boolean>(false);
   const initialValues: naturalPersonType = {
     addressOfMainResidence: "",
@@ -40,7 +40,7 @@ export default function NaturalPersonPage() {
   const sigCanvas = useRef<SignatureCanvas>(null);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col place-items-center gap-7 lg:max-w-1/3">
       <h1 className="font-sans text-2xl">Natural Person Fica</h1>
       <form
         onSubmit={(e) => {
@@ -55,7 +55,7 @@ export default function NaturalPersonPage() {
           children={(field) => {
             return (
               <div className="flex flex-col">
-                <label htmlFor={field.name}>Full name and surname:</label>
+                <label htmlFor={field.name}>Full name and surname</label>
                 <input
                   id={field.name}
                   name={field.name}
@@ -76,7 +76,7 @@ export default function NaturalPersonPage() {
           name="saIdNumber"
           children={(field) => (
             <div className="flex flex-col">
-              <label htmlFor={field.name}>SA ID Number:</label>
+              <label htmlFor={field.name}>SA ID Number</label>
               <input
                 id={field.name}
                 name={field.name}
@@ -96,7 +96,7 @@ export default function NaturalPersonPage() {
           name="citizenship"
           children={(field) => (
             <div className="flex flex-col">
-              <label htmlFor={field.name}>Citizenship:</label>
+              <label htmlFor={field.name}>Citizenship</label>
               <input
                 id={field.name}
                 name={field.name}
@@ -130,7 +130,7 @@ export default function NaturalPersonPage() {
               name="foreigner.passportNumber"
               children={(field) => (
                 <div className="flex flex-col">
-                  <label htmlFor={field.name}>Passport Number:</label>
+                  <label htmlFor={field.name}>Passport Number</label>
                   <input
                     id={field.name}
                     name={field.name}
@@ -150,7 +150,7 @@ export default function NaturalPersonPage() {
               name="foreigner.dateOfBirth"
               children={(field) => (
                 <>
-                  <label htmlFor={field.name}>Date of Birth:</label>
+                  <label htmlFor={field.name}>Date of Birth</label>
                   <input
                     id={field.name}
                     name={field.name}
@@ -171,17 +171,17 @@ export default function NaturalPersonPage() {
               name="foreigner.residencyStatus"
               children={(field) => (
                 <>
-                  <label htmlFor={field.name}>Residency Status:</label>
+                  <label htmlFor={field.name}>Residency Status</label>
                   <select
                     id={field.name}
                     name={field.name}
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) =>
-                      field.handleChange(e.target.value as residencyStatus)
+                      field.handleChange(e.target.value as residencyStatusType)
                     }
                   >
-                    {Object.values(residencyStatuses.Values).map((value) => (
+                    {Object.values(residencyStatus.Values).map((value) => (
                       <option key={value} value={value}>
                         {value}
                       </option>
@@ -209,10 +209,7 @@ export default function NaturalPersonPage() {
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(e) => {
-                  field.handleChange(e.target.value);
-                  setIsForeigner(e.target.value !== "South African");
-                }}
+                onChange={(e) => field.handleChange(e.target.value)}
               />
               <p className="text-red-500">
                 {field.state.meta.errors
@@ -226,17 +223,17 @@ export default function NaturalPersonPage() {
           name="maritalStatus"
           children={(field) => (
             <>
-              <label htmlFor={field.name}>Maritial Status:</label>
+              <label htmlFor={field.name}>Maritial Status</label>
               <select
                 id={field.name}
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
                 onChange={(e) =>
-                  field.handleChange(e.target.value as maritalStatus)
+                  field.handleChange(e.target.value as maritalStatusType)
                 }
               >
-                {Object.values(maritalStatuses.Values).map((value) => (
+                {Object.values(maritalStatus.Values).map((value) => (
                   <option key={value} value={value}>
                     {value}
                   </option>
@@ -262,10 +259,7 @@ export default function NaturalPersonPage() {
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(e) => {
-                  field.handleChange(e.target.value);
-                  setIsForeigner(e.target.value !== "South African");
-                }}
+                onChange={(e) => field.handleChange(e.target.value)}
               />
               <p className="text-red-500">
                 {field.state.meta.errors
@@ -285,10 +279,8 @@ export default function NaturalPersonPage() {
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(e) => {
-                  field.handleChange(e.target.value);
-                  setIsForeigner(e.target.value !== "South African");
-                }}
+                onChange={(e) => field.handleChange(e.target.value)}
+                type="tel"
               />
               <p className="text-red-500">
                 {field.state.meta.errors
@@ -308,10 +300,7 @@ export default function NaturalPersonPage() {
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(e) => {
-                  field.handleChange(e.target.value);
-                  setIsForeigner(e.target.value !== "South African");
-                }}
+                onChange={(e) => field.handleChange(e.target.value)}
                 type="email"
               />
               <p className="text-red-500">
@@ -326,7 +315,7 @@ export default function NaturalPersonPage() {
           name="servicesRequired"
           children={(field) => (
             <>
-              <label htmlFor={field.name}>Services needed:</label>
+              <label htmlFor={field.name}>Services needed</label>
               <select
                 id={field.name}
                 name={field.name}
@@ -334,19 +323,22 @@ export default function NaturalPersonPage() {
                 onBlur={field.handleBlur}
                 multiple
                 onChange={(e) => {
-                  console.log(field.state, e.target.value);
                   const selected = Array.from(
                     e.target.selectedOptions,
                     (option) => option.value,
                   );
-                  field.handleChange(selected as servicesRequiredType[]);
+                  field.handleChange(
+                    selected as servicesRequiredNaturalPersonType[],
+                  );
                 }}
               >
-                {Object.values(servicesRequired.Values).map((value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ))}
+                {Object.values(servicesRequiredNaturalPerson.Values).map(
+                  (value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ),
+                )}
               </select>
               <p className="text-red-500">
                 {field.state.meta.errors
@@ -356,18 +348,14 @@ export default function NaturalPersonPage() {
             </>
           )}
         />
-        <SignatureCanvas
-          canvasProps={{ className: "bg-neutral-100" }}
-          ref={sigCanvas}
-        />
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
           children={([canSubmit, isSubmitting]) => (
-            <>
+            <div className="flex flex-row justify-center gap-6">
               <button
                 type="submit"
                 disabled={!canSubmit}
-                className="rounded-sm border bg-blue-500"
+                className="rounded-sm border bg-blue-500 px-2"
               >
                 {isSubmitting ? "..." : "Submit"}
               </button>
@@ -379,22 +367,16 @@ export default function NaturalPersonPage() {
                   );
                   if (isConfirmed) {
                     form.reset();
-                    console.log(
-                      sigCanvas.current
-                        ?.getTrimmedCanvas()
-                        .toDataURL("image.png"),
-                    );
-                    sigCanvas.current?.clear();
                   }
                 }}
+                className="rounded-sm border bg-neutral-300 px-2"
               >
                 Reset
               </button>
-            </>
+            </div>
           )}
         />
       </form>
-      <button>Help</button>
     </div>
   );
 }
