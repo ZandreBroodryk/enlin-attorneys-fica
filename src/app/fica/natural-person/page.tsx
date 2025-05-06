@@ -1,17 +1,19 @@
 "use client";
 import {
-  maritalStatusType,
-  maritalStatus,
   naturalPersonSchema,
   naturalPersonType,
-  residencyStatus,
-  residencyStatusType,
-  servicesRequiredNaturalPerson,
-  servicesRequiredNaturalPersonType,
 } from "@/lib/forms/fica-schemas";
+import {
+  residencyStatusType,
+  residencyStatus,
+  maritalStatusType,
+  maritalStatus,
+  servicesRequiredNaturalPersonType,
+  servicesRequiredNaturalPerson,
+} from "@/lib/shared";
 import { useForm } from "@tanstack/react-form";
-import { useRef, useState } from "react";
-import SignatureCanvas from "react-signature-canvas";
+import { useState } from "react";
+import { submitNaturalPersonForm } from "./actions";
 
 export default function NaturalPersonFicaPage() {
   const [isForeigner, setIsForeigner] = useState<boolean>(false);
@@ -24,7 +26,9 @@ export default function NaturalPersonFicaPage() {
     incomeTaxNr: "",
     maritalStatus: "Unmarried",
     servicesRequired: [],
-    foreigner: undefined,
+    dateOfBirth: "",
+    passportNumber: "",
+    residencyStatus: undefined,
     saIdNumber: "",
     representingAs: "",
   };
@@ -32,12 +36,13 @@ export default function NaturalPersonFicaPage() {
     defaultValues: initialValues,
     validators: { onChange: naturalPersonSchema },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value);
+      const success = await submitNaturalPersonForm(value);
+
+      if (typeof success === "string") {
+        console.error(success);
+      }
     },
   });
-
-  const sigCanvas = useRef<SignatureCanvas>(null);
 
   return (
     <div className="flex flex-col place-items-center gap-7 lg:max-w-1/3">
@@ -80,7 +85,7 @@ export default function NaturalPersonFicaPage() {
               <input
                 id={field.name}
                 name={field.name}
-                value={field.state.value}
+                value={field.state.value ?? undefined}
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
               />
@@ -127,14 +132,14 @@ export default function NaturalPersonFicaPage() {
         {isForeigner && (
           <>
             <form.Field
-              name="foreigner.passportNumber"
+              name="passportNumber"
               children={(field) => (
                 <div className="flex flex-col">
                   <label htmlFor={field.name}>Passport Number</label>
                   <input
                     id={field.name}
                     name={field.name}
-                    value={field.state.value}
+                    value={field.state.value ?? undefined}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
                   />
@@ -147,14 +152,14 @@ export default function NaturalPersonFicaPage() {
               )}
             />
             <form.Field
-              name="foreigner.dateOfBirth"
+              name="dateOfBirth"
               children={(field) => (
                 <>
                   <label htmlFor={field.name}>Date of Birth</label>
                   <input
                     id={field.name}
                     name={field.name}
-                    value={field.state.value}
+                    value={field.state.value ?? undefined}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
                     type="date"
@@ -168,14 +173,14 @@ export default function NaturalPersonFicaPage() {
               )}
             />
             <form.Field
-              name="foreigner.residencyStatus"
+              name="residencyStatus"
               children={(field) => (
                 <>
                   <label htmlFor={field.name}>Residency Status</label>
                   <select
                     id={field.name}
                     name={field.name}
-                    value={field.state.value}
+                    value={field.state.value ?? undefined}
                     onBlur={field.handleBlur}
                     onChange={(e) =>
                       field.handleChange(e.target.value as residencyStatusType)
@@ -223,7 +228,7 @@ export default function NaturalPersonFicaPage() {
           name="maritalStatus"
           children={(field) => (
             <>
-              <label htmlFor={field.name}>Maritial Status</label>
+              <label htmlFor={field.name}>Marital Status</label>
               <select
                 id={field.name}
                 name={field.name}

@@ -4,6 +4,7 @@ import "./globals.css";
 
 const lexend = Lexend_Giga({
   variable: "--font-lexend",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {

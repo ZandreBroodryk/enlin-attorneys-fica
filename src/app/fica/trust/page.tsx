@@ -1,11 +1,10 @@
 "use client";
 
+import { trustFicaSchema, trustFicaType } from "@/lib/forms/fica-schemas";
 import {
-  servicesRequiredTrustAndPartnership,
   servicesRequiredTrustAndPartnerShipType,
-  trustFicaSchema,
-  trustFicaType,
-} from "@/lib/forms/fica-schemas";
+  servicesRequiredTrustAndPartnership,
+} from "@/lib/shared";
 import { useForm } from "@tanstack/react-form";
 
 export default function TrustFicaPage() {
@@ -229,7 +228,7 @@ export default function TrustFicaPage() {
                 <input
                   id={field.name}
                   name={field.name}
-                  value={field.state.value}
+                  value={field.state.value ?? undefined}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
                   type="url"

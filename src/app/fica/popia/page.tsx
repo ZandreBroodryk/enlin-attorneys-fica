@@ -1,14 +1,12 @@
 "use client";
 
 import { convertFileToBase64 } from "@/lib/forms/base64";
-import {
-  consentOptions,
-  popiaConsentSchema,
-  popiaConsentType,
-} from "@/lib/forms/fica-schemas";
+import { popiaConsentSchema, popiaConsentType } from "@/lib/forms/fica-schemas";
+import { consentOptions } from "@/lib/shared";
 import { useForm } from "@tanstack/react-form";
 import { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
+import { submitPopiaForm } from "./actions";
 
 export default function PopiaConsentFicaPage() {
   const [signatureType, setSignatureType] = useState<
@@ -25,8 +23,11 @@ export default function PopiaConsentFicaPage() {
     defaultValues: initialValues,
     validators: { onChange: popiaConsentSchema },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value);
+      const success = await submitPopiaForm(value);
+
+      if (typeof success === "string") {
+        console.error(success);
+      }
     },
   });
 

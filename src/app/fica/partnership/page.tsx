@@ -3,9 +3,11 @@
 import {
   partnershipFicaSchema,
   partnershipFicaType,
-  servicesRequiredTrustAndPartnership,
-  servicesRequiredTrustAndPartnerShipType,
 } from "@/lib/forms/fica-schemas";
+import {
+  servicesRequiredTrustAndPartnerShipType,
+  servicesRequiredTrustAndPartnership,
+} from "@/lib/shared";
 import { useForm } from "@tanstack/react-form";
 
 export default function PartnershipFicaPage() {
@@ -231,7 +233,7 @@ export default function PartnershipFicaPage() {
                 <input
                   id={field.name}
                   name={field.name}
-                  value={field.state.value}
+                  value={field.state.value ?? undefined}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
                   type="url"
