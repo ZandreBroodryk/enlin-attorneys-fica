@@ -181,9 +181,11 @@ export default function PopiaConsentFicaPage() {
                   <label htmlFor="signatureType">File Upload</label>
                 </div>
                 {signatureType === "canvas" && (
-                  <>
+                  <div className="flex flex-col gap-3">
                     <SignatureCanvas
-                      canvasProps={{ className: "bg-neutral-100 max-w-full" }}
+                      canvasProps={{
+                        className: "bg-neutral-100 max-w-full min-h-[120px]",
+                      }}
                       ref={sigCanvas}
                     />
                     <button
@@ -195,11 +197,11 @@ export default function PopiaConsentFicaPage() {
 
                         field.handleChange(stringContent!);
                       }}
-                      className="rounded border"
+                      className="rounded border p-5"
                     >
                       Capture
                     </button>
-                  </>
+                  </div>
                 )}
                 {signatureType === "text" && (
                   <input

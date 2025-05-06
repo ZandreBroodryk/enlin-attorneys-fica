@@ -5,7 +5,7 @@ export default function AdminDashboardPage() {
   return (
     <>
       <h1 className="py-2 text-4xl">Completed Documents</h1>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3">
         <PopiaSubmissions />
         <NaturalPersonSubmissions />
       </div>
