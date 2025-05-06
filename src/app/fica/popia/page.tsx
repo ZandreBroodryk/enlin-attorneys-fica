@@ -192,7 +192,7 @@ export default function PopiaConsentFicaPage() {
                       type="button"
                       onClick={() => {
                         const stringContent = sigCanvas.current
-                          ?.getTrimmedCanvas()
+                          ?.getCanvas()
                           .toDataURL("image/png");
 
                         field.handleChange(stringContent!);
