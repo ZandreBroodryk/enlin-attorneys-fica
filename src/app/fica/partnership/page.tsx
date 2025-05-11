@@ -9,6 +9,8 @@ import {
   servicesRequiredTrustAndPartnership,
 } from "@/lib/shared";
 import { useForm } from "@tanstack/react-form";
+import { submitPartnershipForm } from "./actions";
+import Loader from "@/components/loader";
 
 export default function PartnershipFicaPage() {
   const initialValues: partnershipFicaType = {
@@ -28,8 +30,11 @@ export default function PartnershipFicaPage() {
     defaultValues: initialValues,
     validators: { onChange: partnershipFicaSchema },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value);
+      const success = await submitPartnershipForm(value);
+
+      if (typeof success === "string") {
+        console.error(success);
+      }
     },
   });
 
@@ -284,7 +289,7 @@ export default function PartnershipFicaPage() {
                 disabled={!canSubmit}
                 className="rounded-sm border bg-blue-500 px-2"
               >
-                {isSubmitting ? "..." : "Submit"}
+                {isSubmitting ? <Loader /> : "Submit"}
               </button>
               <button
                 type="reset"

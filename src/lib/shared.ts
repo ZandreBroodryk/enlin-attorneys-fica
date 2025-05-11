@@ -50,3 +50,15 @@ export type servicesRequiredTrustAndPartnerShipType = z.infer<
 export const consentOptionsValues = ["Yes", "No"] as const;
 
 export const consentOptions = z.enum(consentOptionsValues);
+
+export const paginationSchema = z.object({
+  pageNumber: z.number().gte(1).int(),
+  pageSize: z.number().positive().int(),
+});
+
+export type paginationType = z.infer<typeof paginationSchema>;
+
+export interface paginationResult<T> {
+  items: T[];
+  numberOfPages: number;
+}

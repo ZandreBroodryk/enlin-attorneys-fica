@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function DocumentTypes() {
   return (
-    <section className="flex flex-wrap justify-center gap-7 bg-[url('/content-background.jpg')] px-14 py-7 bg-contain lg:bg-cover">
+    <section className="flex flex-wrap justify-center gap-7 bg-[url('/content-background.jpg')] bg-contain px-14 py-7 lg:bg-cover">
       <DocumentItem
         alt="Natural Person Fica"
         href="/fica/natural-person"

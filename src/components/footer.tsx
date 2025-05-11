@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="flex flex-col gap-7 bg-black p-7 text-center text-lg text-white font-sans">
-      <p className="underline italic font-bold">
+    <footer className="flex flex-col gap-7 bg-black p-7 text-center font-sans text-lg text-white">
+      <p className="font-bold italic underline">
         Please Ensure that all Relevant documents have been uploaded
       </p>
       <p>

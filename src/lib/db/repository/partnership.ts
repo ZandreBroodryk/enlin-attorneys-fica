@@ -1,21 +1,21 @@
 import {
-  popiaConsentSelectType,
-  popiaConsentType,
+  partnershipFicaType,
+  partnershipSelectType,
 } from "@/lib/forms/fica-schemas";
 import { db } from "..";
-import { popiaConsent } from "../schema";
+import { partnershipFica } from "../schema";
 import { paginationResult, paginationType } from "@/lib/shared";
 import { count } from "drizzle-orm";
 
-export async function getPopiaSubmissions(
+export async function getPartnershipFicaSubmissions(
   params: paginationType,
-): Promise<paginationResult<popiaConsentSelectType>> {
-  const itemsTask = db.query.popiaConsent.findMany({
+): Promise<paginationResult<partnershipSelectType>> {
+  const itemsTask = db.query.partnershipFica.findMany({
     limit: params.pageSize,
     offset: (params.pageNumber - 1) * params.pageSize,
   });
 
-  const entriesCountTask = db.select({ count: count() }).from(popiaConsent);
+  const entriesCountTask = db.select({ count: count() }).from(partnershipFica);
 
   const [items, entriesCount] = await Promise.all([
     itemsTask,
@@ -27,9 +27,14 @@ export async function getPopiaSubmissions(
   return { numberOfPages, items };
 }
 
-export async function createPopiaEntry(formData: popiaConsentType) {
+export async function createPartnershipFicaEntry(
+  formData: partnershipFicaType,
+) {
   try {
-    const result = await db.insert(popiaConsent).values(formData).returning();
+    const result = await db
+      .insert(partnershipFica)
+      .values(formData)
+      .returning();
 
     return { success: true, data: result.at(0) };
   } catch (error) {

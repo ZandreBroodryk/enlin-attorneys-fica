@@ -1,21 +1,18 @@
-import {
-  popiaConsentSelectType,
-  popiaConsentType,
-} from "@/lib/forms/fica-schemas";
+import { trustFicaSelectType, trustFicaType } from "@/lib/forms/fica-schemas";
 import { db } from "..";
-import { popiaConsent } from "../schema";
+import { trustFica } from "../schema";
 import { paginationResult, paginationType } from "@/lib/shared";
 import { count } from "drizzle-orm";
 
-export async function getPopiaSubmissions(
+export async function getTrustFicaSubmissions(
   params: paginationType,
-): Promise<paginationResult<popiaConsentSelectType>> {
-  const itemsTask = db.query.popiaConsent.findMany({
+): Promise<paginationResult<trustFicaSelectType>> {
+  const itemsTask = db.query.trustFica.findMany({
     limit: params.pageSize,
     offset: (params.pageNumber - 1) * params.pageSize,
   });
 
-  const entriesCountTask = db.select({ count: count() }).from(popiaConsent);
+  const entriesCountTask = db.select({ count: count() }).from(trustFica);
 
   const [items, entriesCount] = await Promise.all([
     itemsTask,
@@ -27,9 +24,9 @@ export async function getPopiaSubmissions(
   return { numberOfPages, items };
 }
 
-export async function createPopiaEntry(formData: popiaConsentType) {
+export async function createTrustFicaEntry(formData: trustFicaType) {
   try {
-    const result = await db.insert(popiaConsent).values(formData).returning();
+    const result = await db.insert(trustFica).values(formData).returning();
 
     return { success: true, data: result.at(0) };
   } catch (error) {

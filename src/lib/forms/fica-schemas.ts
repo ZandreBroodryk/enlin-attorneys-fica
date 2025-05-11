@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import {
   naturalPersonFica,
   partnershipFica,
@@ -17,12 +17,23 @@ export const naturalPersonSchema = createInsertSchema(naturalPersonFica, {
 
 export type naturalPersonType = z.infer<typeof naturalPersonSchema>;
 
+export const naturalPersonFicaSelectSchema =
+  createSelectSchema(naturalPersonFica);
+
+export type naturalPersonFicaSelectType = z.infer<
+  typeof naturalPersonFicaSelectSchema
+>;
+
 export const trustFicaSchema = createInsertSchema(trustFica, {
   primaryEmail: (schema) => schema.email(),
   websiteUrl: (schema) => schema.url(),
 });
 
 export type trustFicaType = z.infer<typeof trustFicaSchema>;
+
+export const trustFicaSelectSchema = createSelectSchema(trustFica);
+
+export type trustFicaSelectType = z.infer<typeof trustFicaSelectSchema>;
 
 export const partnershipFicaSchema = createInsertSchema(partnershipFica, {
   numberOfPartners: (schema) => schema.gt(1),
@@ -32,9 +43,17 @@ export const partnershipFicaSchema = createInsertSchema(partnershipFica, {
 
 export type partnershipFicaType = z.infer<typeof partnershipFicaSchema>;
 
+export const partnershipFicaSelectSchema = createSelectSchema(partnershipFica);
+
+export type partnershipSelectType = z.infer<typeof partnershipFicaSelectSchema>;
+
 export const popiaConsentSchema = createInsertSchema(popiaConsent, {
   email: (schema) => schema.email(),
   signature: (schema) => schema.min(4, "Signature is Required"),
 });
 
 export type popiaConsentType = z.infer<typeof popiaConsentSchema>;
+
+export const popiaConsentSelectSchema = createSelectSchema(popiaConsent);
+
+export type popiaConsentSelectType = z.infer<typeof popiaConsentSelectSchema>;

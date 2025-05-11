@@ -24,7 +24,7 @@ export default function HeroImage() {
       alt="Enslin Inc. Logo"
       width={899}
       height={887}
-      className={`lg:-mt-[190px] mx-auto h-full`}
+      className={`mx-auto h-full lg:-mt-[190px]`}
       style={{ translate: `0px ${translate}px` }}
     />
   );

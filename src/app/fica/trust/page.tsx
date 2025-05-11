@@ -6,6 +6,8 @@ import {
   servicesRequiredTrustAndPartnership,
 } from "@/lib/shared";
 import { useForm } from "@tanstack/react-form";
+import { submitTrsutFicaForm } from "./actions";
+import Loader from "@/components/loader";
 
 export default function TrustFicaPage() {
   const initialValues: trustFicaType = {
@@ -25,8 +27,11 @@ export default function TrustFicaPage() {
     defaultValues: initialValues,
     validators: { onChange: trustFicaSchema },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value);
+      const success = await submitTrsutFicaForm(value);
+
+      if (typeof success === "string") {
+        console.error(success);
+      }
     },
   });
   return (
@@ -279,7 +284,7 @@ export default function TrustFicaPage() {
                 disabled={!canSubmit}
                 className="rounded-sm border bg-blue-500"
               >
-                {isSubmitting ? "..." : "Submit"}
+                {isSubmitting ? <Loader /> : "Submit"}
               </button>
               <button
                 type="reset"

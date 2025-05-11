@@ -1,7 +1,8 @@
 "use server";
 
-import { getNaturalPersonSubmissions } from "@/lib/db/repository/natural-person";
+import { getNaturalPersonFicaSubmissions } from "@/lib/db/repository/natural-person";
+import { paginationType } from "@/lib/shared";
 
-export async function getNaturalPersonSubmissionsAdmin() {
-  return await getNaturalPersonSubmissions();
+export async function getNaturalPersonSubmissionsAdmin(params: paginationType) {
+  return await getNaturalPersonFicaSubmissions(params);
 }

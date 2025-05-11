@@ -7,6 +7,7 @@ import { useForm } from "@tanstack/react-form";
 import { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { submitPopiaForm } from "./actions";
+import Loader from "@/components/loader";
 
 export default function PopiaConsentFicaPage() {
   const [signatureType, setSignatureType] = useState<
@@ -251,7 +252,7 @@ export default function PopiaConsentFicaPage() {
                 disabled={!canSubmit}
                 className="rounded-sm border bg-blue-500 px-2"
               >
-                {isSubmitting ? "..." : "Submit"}
+                {isSubmitting ? <Loader /> : "Submit"}
               </button>
               <button
                 type="reset"

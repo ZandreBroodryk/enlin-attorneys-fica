@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/loader";
 import { trustFicaSchema, trustFicaType } from "@/lib/forms/fica-schemas";
 import {
   servicesRequiredTrustAndPartnerShipType,
@@ -26,7 +27,7 @@ export default function EstateTrustFicaPage() {
     validators: { onChange: trustFicaSchema },
     onSubmit: async ({ value }) => {
       // Do something with form data
-      console.log(value);
+      console.error("Estate Trust Fica not yet implemented", value);
     },
   });
   return (
@@ -280,7 +281,7 @@ export default function EstateTrustFicaPage() {
                 disabled={!canSubmit}
                 className="rounded-sm border bg-blue-500"
               >
-                {isSubmitting ? "..." : "Submit"}
+                {isSubmitting ? <Loader /> : "Submit"}
               </button>
               <button
                 type="reset"

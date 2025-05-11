@@ -14,6 +14,7 @@ import {
 import { useForm } from "@tanstack/react-form";
 import { useState } from "react";
 import { submitNaturalPersonForm } from "./actions";
+import Loader from "@/components/loader";
 
 export default function NaturalPersonFicaPage() {
   const [isForeigner, setIsForeigner] = useState<boolean>(false);
@@ -351,7 +352,7 @@ export default function NaturalPersonFicaPage() {
                 disabled={!canSubmit}
                 className="rounded-sm border bg-blue-500 px-2"
               >
-                {isSubmitting ? "..." : "Submit"}
+                {isSubmitting ? <Loader /> : "Submit"}
               </button>
               <button
                 type="reset"
