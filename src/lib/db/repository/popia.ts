@@ -7,6 +7,11 @@ import { popiaConsent } from "../schema";
 import { paginationResult, paginationType } from "@/lib/shared";
 import { count } from "drizzle-orm";
 
+export async function numberOfSubmissions() {
+  const countQuery = await db.select({ count: count() }).from(popiaConsent);
+  return countQuery[0].count;
+}
+
 export async function getPopiaSubmissions(
   params: paginationType,
 ): Promise<paginationResult<popiaConsentSelectType>> {

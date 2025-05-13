@@ -4,6 +4,11 @@ import { trustFica } from "../schema";
 import { paginationResult, paginationType } from "@/lib/shared";
 import { count } from "drizzle-orm";
 
+export async function numberOfSubmissions() {
+  const countQuery = await db.select({ count: count() }).from(trustFica);
+  return countQuery[0].count;
+}
+
 export async function getTrustFicaSubmissions(
   params: paginationType,
 ): Promise<paginationResult<trustFicaSelectType>> {

@@ -7,6 +7,11 @@ import { partnershipFica } from "../schema";
 import { paginationResult, paginationType } from "@/lib/shared";
 import { count } from "drizzle-orm";
 
+export async function numberOfSubmissions() {
+  const countQuery = await db.select({ count: count() }).from(partnershipFica);
+  return countQuery[0].count;
+}
+
 export async function getPartnershipFicaSubmissions(
   params: paginationType,
 ): Promise<paginationResult<partnershipSelectType>> {

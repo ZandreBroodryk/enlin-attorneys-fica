@@ -1,40 +1,40 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getNaturalPersonSubmissionsAdmin } from "./actions";
 import { paginationType } from "@/lib/shared";
 import { useState } from "react";
+import { getTrustSubmissionsAdmin } from "./actions";
 import PaginationQueryResult from "../pagination-query-result";
 
-export function NaturalPersonSubmissions() {
+export function TrustSubmissions() {
   const [pagination, setPagination] = useState<paginationType>({
     pageNumber: 1,
     pageSize: 10,
   });
-  const naturalPersonQuery = useQuery({
+  const trustQuery = useQuery({
     queryKey: [
       "natural-person-submissions",
       pagination.pageNumber,
       pagination.pageSize,
     ],
-    queryFn: () => getNaturalPersonSubmissionsAdmin(pagination),
+    queryFn: () => getTrustSubmissionsAdmin(pagination),
   });
 
   return (
     <div className="flex flex-col gap-7">
-      <h1 className="font-sans text-xl font-bold">Natural Person Fica</h1>
+      <h1 className="font-sans text-xl font-bold">Trust Fica</h1>
       <PaginationQueryResult
-        query={naturalPersonQuery}
         pagination={pagination}
+        query={trustQuery}
         setPagination={setPagination}
       >
-        {(submissons) =>
-          submissons.map((item) => (
+        {(submissions) =>
+          submissions.map((item) => (
             <div className="rounded-md border bg-neutral-500 p-2" key={item.id}>
-              <p>{item.fullNames}</p>
-              <p>{item.email}</p>
-              <p>{item.contactNumber}</p>
-              <p>{item.maritalStatus}</p>
+              <p>{item.trustName}</p>
+              <p>{item.primaryEmail}</p>
+              <p>{item.primaryContactNr}</p>
+              <p>{item.placeOfBusiness}</p>
             </div>
           ))
         }
