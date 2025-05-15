@@ -79,7 +79,7 @@ function HamburgerMenu() {
         </svg>
       </button>
       <nav
-        className={`absolute top-0 left-0 flex h-screen flex-col gap-4 overflow-clip bg-neutral-800 pt-20 transition-all duration-500 lg:hidden ${isOpen ? "w-60 px-7" : "w-0"}`}
+        className={`absolute top-0 left-0 flex h-screen flex-col gap-4 overflow-clip bg-neutral-800 pt-20 text-white transition-all duration-500 lg:hidden ${isOpen ? "w-60 px-7" : "w-0"}`}
       >
         <Routes />
       </nav>
